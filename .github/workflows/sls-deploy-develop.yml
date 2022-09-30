@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: print
-        if: ${{ github.ref }} == 'refs/heads/main'
+        if: false
         run: echo main [${{ github.ref }}]
 
   develop-deploy:
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: print
-        if: ${{ github.ref }} == 'refs/heads/develop'
+        if: true
         run: echo develop [${{ github.ref }}]
 #     steps:
 #       - name: Getting checkout
