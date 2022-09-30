@@ -32,11 +32,11 @@ jobs:
 
       - name: Production deploy
         if: github.ref == 'refs/heads/main'
-        run: echo main >>> [${{ github.ref }}]
+        run: echo main [${{ github.ref }}]
 
       - name: Develop deploy
         if: github.ref == 'refs/heads/develop'
-        run: echo develop >>> [${{ github.ref }}]
+        run: echo develop [${{ github.ref }}]
 #     steps:
 #       - name: Getting checkout
 #         uses: actions/checkout@v3
