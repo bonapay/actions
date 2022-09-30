@@ -13,6 +13,7 @@ jobs:
   develop-main:
     if: ${{ github.ref }} == 'refs/heads/main'
     name: Develop main
+    runs-on: ubuntu-latest
     steps:
       - name: print
         run: echo main deployyyyy
@@ -20,6 +21,7 @@ jobs:
   develop-deploy:
     if: ${{ github.ref }} == 'refs/heads/develop'
     name: Develop deploy
+    runs-on: ubuntu-latest
     steps:
       - name: print
         run: echo develop deployyyyy
