@@ -8,12 +8,23 @@ jobs:
     name: Setup and deploy
     runs-on: ubuntu-latest
     steps:
-      - name: 'print main'
-        if: github.ref == refs/heads/main
-        run: echo main
-      - name: 'print develop'
-        if: github.ref == refs/heads/develop
-        run: echo dev
+      - name: setup
+        run: echo setup step
+  
+  develop-deploy:
+    if: github.ref == 'refs/heads/main'
+    name: Develop main
+    steps:
+      - name: print >>>
+        run: echo main deployyyyy
+
+  develop-deploy:
+    if: github.ref == 'refs/heads/develop'
+    name: Develop deploy
+    steps:
+      - name: print >>>
+        run: echo develop deployyyyy
+
 #     steps:
 #       - name: Getting checkout
 #         uses: actions/checkout@v3
