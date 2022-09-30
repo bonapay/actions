@@ -14,13 +14,21 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 14.x
-  # checkout:
-  #   name: Checkout
-  #   needs: [setup]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Getting checkout from ${{ github.ref }}
-  #       uses: actions/checkout@v3
+
+  checkout:
+    name: Checkout
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting checkout from ${{ github.ref }}
+        uses: actions/checkout@v3
+
+  install-dependences:
+    name: Install dependences
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      run: npm ci
 
   main-deploy:
     name: Develop main
