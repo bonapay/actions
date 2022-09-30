@@ -23,12 +23,20 @@ jobs:
       - name: Getting checkout from ${{ github.ref }}
         uses: actions/checkout@v3
 
+      - name: print workspace
+        run: |
+          ls ${{ github.workspace }}
+
   install-dependences:
     name: Install dependences
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
-      - run: npm ci
+      - name: Enter workspace
+        run: cd ${{ github.workspace }}
+
+      - name: npm ci
+        run: npm ci
 
   main-deploy:
     name: Develop main
