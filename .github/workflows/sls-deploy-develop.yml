@@ -1,8 +1,7 @@
 name: SLS deploy develop
 
-on:
-  workflow_call
-  
+on: workflow_call
+
 jobs:
   setup:
     name: Setup and deploy
@@ -10,21 +9,20 @@ jobs:
     steps:
       - name: setup
         run: echo setup step
-  
-  develop-deploy:
-    if: github.ref == 'refs/heads/main'
+
+  develop-main:
+    if: ${{ github.ref }} == 'refs/heads/main'
     name: Develop main
     steps:
-      - name: print >>>
+      - name: print
         run: echo main deployyyyy
 
   develop-deploy:
-    if: github.ref == 'refs/heads/develop'
+    if: ${{ github.ref }} == 'refs/heads/develop'
     name: Develop deploy
     steps:
-      - name: print >>>
+      - name: print
         run: echo develop deployyyyy
-
 #     steps:
 #       - name: Getting checkout
 #         uses: actions/checkout@v3
