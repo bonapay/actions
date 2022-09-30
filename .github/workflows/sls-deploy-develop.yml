@@ -29,7 +29,7 @@ jobs:
 
   install-dependences:
     name: Install dependences
-    needs: [setup]
+    needs: [checkout]
     runs-on: ubuntu-latest
     steps:
       - name: Enter workspace
@@ -38,7 +38,7 @@ jobs:
       - name: npm ci
         run: npm ci
 
-  main-deploy:
+  install-dependences:
     name: Develop main
     if: github.ref == 'refs/heads/main'
     needs: [setup]
@@ -47,7 +47,7 @@ jobs:
       - name: print
         run: echo main [${{ github.ref }}]
 
-  develop-deploy:
+  install-dependences:
     name: Develop deploy
     if: github.ref == 'refs/heads/develop'
     needs: [setup]
