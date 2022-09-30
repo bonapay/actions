@@ -3,64 +3,40 @@ name: SLS deploy develop
 on: workflow_call
 
 jobs:
-  setup:
-    name: Setup and deploy
+  # checkout:
+  #   name: Checkout
+  #   needs: [setup]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Getting checkout from ${{ github.ref }}
+  #       uses: actions/checkout@v3
+
+  #     - name: print workspace
+  #       run: |
+  #         ls ${{ github.workspace }}
+
+  sls-deploy:
+    name: Serverless deploy
     runs-on: ubuntu-latest
     steps:
-      - name: setup
-        run: echo setup step
+      - name: Getting checkout from ${{ github.ref }}
+        uses: actions/checkout@v3
 
       - name: Install node 14.x
         uses: actions/setup-node@v3
         with:
           node-version: 14.x
 
-  checkout:
-    name: Checkout
-    needs: [setup]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Getting checkout from ${{ github.ref }}
-        uses: actions/checkout@v3
-
-      - name: print workspace
-        run: |
-          ls ${{ github.workspace }}
-
-  install-dependences:
-    name: Install dependences
-    needs: [checkout]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Enter workspace
-        run: cd ${{ github.workspace }}
-
-      - name: print actual folder
-        run: pwd
-
-      - name: list dir
-        run: ls
-
-      - name: npm ci
+      - name: Install dependencies
         run: npm ci
 
-  main-deploy:
-    name: Develop main
-    if: github.ref == 'refs/heads/main'
-    needs: [install-dependences]
-    runs-on: ubuntu-latest
-    steps:
-      - name: print
-        run: echo main [${{ github.ref }}]
+      - name: Production deploy
+        if: github.ref == 'refs/heads/main'
+        run: echo main >>> [${{ github.ref }}]
 
-  develop-deploy:
-    name: Develop deploy
-    if: github.ref == 'refs/heads/develop'
-    needs: [install-dependences]
-    runs-on: ubuntu-latest
-    steps:
-      - name: print
-        run: echo develop [${{ github.ref }}]
+      - name: Develop deploy
+        if: github.ref == 'refs/heads/develop'
+        run: echo develop >>> [${{ github.ref }}]
 #     steps:
 #       - name: Getting checkout
 #         uses: actions/checkout@v3
