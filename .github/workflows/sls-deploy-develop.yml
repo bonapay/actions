@@ -8,8 +8,12 @@ jobs:
     name: Setup and deploy
     runs-on: ubuntu-latest
     steps:
-      - name: 'print branch name'
-        run: echo ${{ github.ref }}
+      - name: 'print main'
+        if: github.ref == refs/heads/main
+        run: echo main
+      - name: 'print develop'
+        if: github.ref == refs/heads/develop
+        run: echo dev
 #     steps:
 #       - name: Getting checkout
 #         uses: actions/checkout@v3
