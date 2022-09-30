@@ -12,20 +12,20 @@ jobs:
 
   develop-main:
     name: Develop main
+    if: github.ref == 'refs/heads/main'
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
       - name: print
-        if: github.ref == 'refs/heads/main'
         run: echo main [${{ github.ref }}]
 
   develop-deploy:
     name: Develop deploy
+    if: github.ref == 'refs/heads/develop'
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
       - name: print
-        if: github.ref == 'refs/heads/develop'
         run: echo develop [${{ github.ref }}]
 #     steps:
 #       - name: Getting checkout
