@@ -11,20 +11,22 @@ jobs:
         run: echo setup step
 
   develop-main:
-    if: ${{ github.ref }} == 'refs/heads/main'
     name: Develop main
+    if: ${{ github.ref }} == 'refs/heads/main'
+    needs: [setup]
     runs-on: ubuntu-latest
     steps:
       - name: print
-        run: echo main deployyyyy
+        run: echo main [${{ github.ref }}]
 
   develop-deploy:
-    if: ${{ github.ref }} == 'refs/heads/develop'
     name: Develop deploy
+    if: ${{ github.ref }} == 'refs/heads/develop'
+    needs: [setup]
     runs-on: ubuntu-latest
     steps:
       - name: print
-        run: echo develop deployyyyy
+        run: echo develop [${{ github.ref }}]
 #     steps:
 #       - name: Getting checkout
 #         uses: actions/checkout@v3
