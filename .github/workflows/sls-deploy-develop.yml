@@ -28,7 +28,7 @@ jobs:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
-      run: npm ci
+      - run: npm ci
 
   main-deploy:
     name: Develop main
