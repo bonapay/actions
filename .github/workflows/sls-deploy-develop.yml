@@ -10,7 +10,19 @@ jobs:
       - name: setup
         run: echo setup step
 
-  develop-main:
+      - name: Install node 14.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.x
+  # checkout:
+  #   name: Checkout
+  #   needs: [setup]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Getting checkout from ${{ github.ref }}
+  #       uses: actions/checkout@v3
+
+  main-deploy:
     name: Develop main
     if: github.ref == 'refs/heads/main'
     needs: [setup]
