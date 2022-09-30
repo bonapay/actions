@@ -38,19 +38,19 @@ jobs:
       - name: npm ci
         run: npm ci
 
-  install-dependences:
+  main-deploy:
     name: Develop main
     if: github.ref == 'refs/heads/main'
-    needs: [setup]
+    needs: [install-dependences]
     runs-on: ubuntu-latest
     steps:
       - name: print
         run: echo main [${{ github.ref }}]
 
-  install-dependences:
+  develop-deploy:
     name: Develop deploy
     if: github.ref == 'refs/heads/develop'
-    needs: [setup]
+    needs: [install-dependences]
     runs-on: ubuntu-latest
     steps:
       - name: print
