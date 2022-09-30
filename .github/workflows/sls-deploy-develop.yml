@@ -35,6 +35,12 @@ jobs:
       - name: Enter workspace
         run: cd ${{ github.workspace }}
 
+      - name: print actual folder
+        run: pwd
+
+      - name: list dir
+        run: ls
+
       - name: npm ci
         run: npm ci
 
