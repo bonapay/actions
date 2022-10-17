@@ -22,10 +22,10 @@ jobs:
       - name: Getting checkout from ${{ github.ref }}
         uses: actions/checkout@v3
 
-      - name: Install node 14.x
+      - name: Install node 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Install dependencies
         run: npm ci
@@ -47,22 +47,3 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_DEVELOP }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEVELOP }}
-#     steps:
-#       - name: Getting checkout
-#         uses: actions/checkout@v3
-
-#       - name: Install node 14.x
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: 14.x
-
-#       - name: Install dependencies
-#         run: npm ci
-
-#       - name: serverless deploy
-#         uses: serverless/github-action@v3.1
-#         with:
-#           args: deploy -s develop
-#         env:
-#           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
