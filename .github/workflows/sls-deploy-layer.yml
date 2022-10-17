@@ -17,7 +17,7 @@ jobs:
 
       - name: Install nodejs layer dependencies
         run: |
-          cd layers/nodejs 
+          cd layers/common-libs/nodejs 
           npm ci
 
       - name: Production deploy
