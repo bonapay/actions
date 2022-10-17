@@ -16,7 +16,9 @@ jobs:
           node-version: 16.x
 
       - name: Install nodejs layer dependencies
-        run: cd layers/nodejs && npm ci
+        run: |
+          cd layers/nodejs 
+          npm ci
 
       - name: Production deploy
         if: github.ref == 'refs/heads/main'
