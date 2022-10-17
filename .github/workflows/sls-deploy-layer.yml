@@ -1,0 +1,34 @@
+name: SLS deploy develop
+
+on: workflow_call
+
+jobs:
+  sls-deploy-layer:
+    name: Serverless deploy layer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting checkout from ${{ github.ref }}
+        uses: actions/checkout@v3
+
+      - name: Install node 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Production deploy
+        if: github.ref == 'refs/heads/main'
+        uses: serverless/github-action@v3.1
+        with:
+          args: deploy -s production
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_PRODUCTION }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_PRODUCTION }}
+
+      - name: Develop deploy
+        if: github.ref == 'refs/heads/develop'
+        uses: serverless/github-action@v3.1
+        with:
+          args: deploy -s develop
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_DEVELOP }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEVELOP }}
